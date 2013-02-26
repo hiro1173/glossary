@@ -1,0 +1,21 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+
+<{include file="db:glossary_view_search.html"}>
+<{include file="db:glossary_view_letter.html"}>
+
+<{if count($category_word) gt 0}>
+	<p style="margin-bottom: 5px;">
+	<b><{$searchletter}></b>
+	</p>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<{foreach item=i from=$category_word}>
+	<{include file="db:glossary_word_item.html"}>
+<{/foreach}>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<{/if}>
+<br />
+<div align="right"><a href="#"><{$smarty.const._MD_GLOSSARY_GOTOP}></a></div>

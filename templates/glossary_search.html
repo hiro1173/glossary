@@ -1,0 +1,17 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+<{$breadlist}>
+
+<div id="word-search">
+<form name="search" id="search" action="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/index.php?action=Search" method="post" onsubmit="return xoopsFormValidate_search();">
+	<{xoops_input type=hidden name=action value=results}>
+	<{$smarty.const._MD_GLOSSARY_FREEWORDS}>&nbsp;
+
+	<{* --- コメント文
+	<{xoops_input type=text name=query size=50 maxlength=255 value=$actionForm->get('query')}>
+	 --- *}>
+
+	<input name="query" id="query" size="50" maxlength="255" value="<{$querywords}>" type="text" />&nbsp;
+
+	<input type="submit" value="<{$smarty.const._MD_GLOSSARY_SEARCHENTRY}>" />
+</form>
+</div>

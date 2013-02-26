@@ -1,0 +1,52 @@
+http://www.dynamicdrive.com/dynamicindex17/ajaxtabscontent/index.htm
+
+タブの中のコンテンツの切り替えにこれを使うと良い
+
+http://www.andreacfm.com/index.cfm/jquery-plug-ins/ajax-content
+
+インライン編集はこれを使う
+
+http://davehauenstein.com/blog/archives/28
+
+マルチアップロード
+http://www.fyneworks.com/jquery/multiple-file-upload/
+
+タグ付けはこちら
+http://www.alcoholwang.cn/jquery/jTagging.htm
+
+
+Method
+
+$.fn.jTagging(tags, seperator,normalStyle, selectedStyle, normalHoverStyle);
+
+
+タブは、先に読み込んでタブを切り替えるタイプはこちら
+http://www.sunsean.com/idTabs/
+
+
+入力フォーム
+http://www.malsup.com/jquery/form/
+
+jQuery FCKEditor Plugin v1.21
+http://www.fyneworks.com/jquery/FCKEditor/
+
+
+
+
+		$moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL . "/modules/glossary/js/jquery-1.2.3.pack.js\"></script>\n";
+		$moduleHeader.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . XOOPS_URL . "/modules/glossary/js/jqDnR.css\" />\n";
+
+		$moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL . "/modules/glossary/js/jqDnR.js\"></script>\n";
+		// jqDnR Recommended
+		$moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL . "/modules/glossary/js/dimensions.js\"></script>\n";
+		// jqModal [optional]
+		$moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL . "/modules/glossary/js/jqModal.js\"></script>\n";
+
+		$moduleHeader.= "<script type=text/javascript>
+$().ready(function() {
+	$('#ex1').jqResize('.jqResize');
+});
+</script>\n";
+
+
+

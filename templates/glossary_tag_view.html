@@ -1,0 +1,13 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+<{include file="db:glossary_view_search.html"}>
+
+<h2 class="word">
+	<{$smarty.const._MD_GLOSSARY_TAGS}>&nbsp;:&nbsp;<{$tag|xoops_escape}>
+</h2>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{foreach item=i from=$word_array}>
+	<{include file="db:glossary_word_item.html"}>
+<{/foreach}>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{$total_count}><{$smarty.const._MD_GLOSSARY_PAGE_HIT}>

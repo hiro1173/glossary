@@ -1,0 +1,248 @@
+.readme{
+	background: #E1EDFF;
+	width: 100%;
+	margin-top: 10px;
+	padding: 5px 5px 5px 10px;
+	margin-bottom: 10px;
+}
+.letterHead{
+	background-color: #C6DDFF;
+	padding: 5px 8px 5px 8px;
+	margin-left: 10px;
+}
+#wordlist {
+	margin-top: 10px;
+}
+
+#wordlist div.word-letf {
+	float: left;
+	width: 300px;
+}
+
+#wordlist div.word-right {
+	margin-left: 23px;
+	float: left;
+}
+
+
+#categorylist {
+	margin-top: 10px;
+	clear: both;
+}
+
+
+.clear {
+	clear: both;
+	margin-bottom: 5px;
+}
+
+#letter-block {
+	clear:both;
+	width:100%;
+	margin:0.1em 0em;
+	padding:0em;	
+}
+
+#letter-line {
+	margin:0em;
+	padding:0em;
+	text-align:center;
+	line-height:1.4em;
+}
+
+.letter a {
+	text-decoration: underline;
+}
+
+/* 検索
+----------------------------------------------- */
+#word-search {
+	background: #EFECD9;
+	padding: 7px 15px;
+	border: 1px solid #B1A148;
+}
+
+#word-search input {
+	vertical-align: middle;
+}
+
+/* 用語の表示
+----------------------------------------------- */
+.word-even {
+	border: solid #CCCCCC 1px;
+	padding: 3px 3px 3px 3px;
+	margin-bottom: 10px;
+	background: #F7F7F7;
+}
+
+.word-odd {
+	border: solid #CCCCCC 1px;
+	padding: 3px 3px 3px 3px;
+	margin-bottom: 10px;
+	background: #F7FCFF;
+}
+
+
+.haserror p{
+	padding: 3px 3px 3px 3px;
+	margin-bottom: 10px;
+	background: #F7FCFF;
+}
+
+/* 用語の解説
+----------------------------------------------- */
+.word {
+	margin-left: 10px;
+	padding: 10px 10px 0px 10px;
+}
+
+#word-tag {
+	margin-left: 30px;
+	margin-bottom: 5px;
+	padding: 10px 10px 0px 10px;
+}
+
+
+#word-yomi {
+	margin-left: 30px;
+	margin-bottom: 5px;
+	border-top: dotted #C0C0C0 1px;
+	padding: 10px 10px 0px 10px;
+}
+
+
+#word-desc {
+	margin-left: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-top: dotted #C0C0C0 1px;
+	padding: 10px 10px 0px 10px;
+}
+
+#word-desc a {
+	font-style: oblique;
+	text-decoration: underline;
+}
+
+#word-desc table {
+	background-color: #CCCCFF;
+}
+
+#word-desc td {
+	background-color: #E8F7FF;
+	padding: 5px;
+}
+
+#word-reference {
+	margin-left: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-top: dotted #C0C0C0 1px;
+	padding: 10px 10px 0px 10px;
+}
+
+/* Breadcrumbs
+----------------------------------------------- */
+#module_breadcrumbs {
+	clear: both;
+	text-align: left;
+	margin-left: 0px;
+}
+
+#module_breadcrumbs ul {
+	margin:0;
+	padding:6px 3px;
+	width:100%;
+}
+
+#module_breadcrumbs li {
+	float:left;
+	padding: 0px 2px;
+	margin:0;
+	margin-left: -10px;
+	text-decoration: none;
+
+	list-style:none;
+}
+
+#module_breadcrumbs ul li a {
+	padding: 2px 24px 2px 0px;
+	text-decoration: none;
+	background: url(images/arrow.gif) no-repeat right center;
+}
+
+
+/* Action form error message
+----------------------------------------------- */
+.haserror {
+	border: solid #CCCCCC 1px;
+	padding: 3px 3px 3px 3px;
+	margin-bottom: 10px;
+	background: #FFFFCC;
+}
+
+.haserror p {
+	color: Red;
+	background-color: transparent;
+}
+
+.haserror li{
+	list-style: square;
+	margin-left: 15px;
+}
+
+/* TAGS
+----------------------------------------------- */
+/* TAGS */
+
+p.tags {
+    line-height: 2.25em;
+    margin: 2em 10%;
+    text-align: justify;
+    vertical-align: middle;
+}
+p.tags a,
+p.tags span {
+    color: #47A;
+    margin-right: 0.5em;
+}
+p.tags span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+p.tags span.selected {
+    background: #CEC;
+}
+
+#collapsible {
+	margin-top: 10px;
+}
+
+
+/* tagcloud
+----------------------------------------------- */
+#tagcloud {
+	line-height: 2.25em;
+	margin: 1.5em 3%;
+	text-align: justify;
+	vertical-align: middle;
+}
+#tagcloud a {
+	color: #47A;
+	margin-right: 0.5em;
+}
+#tagcloud a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	background-color: #D03400;
+	color: White;
+}
+
+#tagcloud a:selected {
+	background: #CEC;
+}
+
+#sc_menu {
+	text-align: right;
+	margin-bottom: 5px;
+}

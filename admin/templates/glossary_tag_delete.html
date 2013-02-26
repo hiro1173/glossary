@@ -1,0 +1,37 @@
+<{* --- ƒwƒbƒ_[ˆ— --- *}>
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<form name='post' id='post' action='index.php?action=TagDelete' method='POST'>
+
+
+	<{xoops_token form=$actionForm}>
+	<{xoops_input type=hidden name=tag value=$tag}>
+
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' class='outer'>
+	<tbody>
+		<tr>
+			<th colspan="2" align="center">
+			<{$smarty.const._AD_GLOSSARY_TAG_DELETE}>
+			</th>
+		</tr>
+
+	<tr>
+	<tr>
+		<td class='even'><{$smarty.const._MD_GLOSSARY_TAG}></td>
+		<td class='odd'><{$tag}></td>
+	</tr>
+
+	<tr>
+		<td class='even'><{$smarty.const._AD_GLOSSARY_TAG_COUNTWORD}></td>
+		<td class='odd'><{$total_count}></td>
+	</tr>
+	<tr>
+	<td class='even'></td>
+	<td class='odd'>
+		<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+		<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+	</td>
+</tr>
+</tbody>
+</table>
+</form>

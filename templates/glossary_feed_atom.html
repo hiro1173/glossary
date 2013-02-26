@@ -1,0 +1,76 @@
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Example Feed</title>
+ <link href="http://example.org/"/>
+ <updated>2003-12-13T18:30:02Z</updated>
+ <author>
+   <name>John Doe</name>
+ </author>
+ <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
+
+ <entry>
+   <title>Atom-Powered Robots Run Amok</title>
+   <link href="http://example.org/2003/12/13/atom03"/>
+   <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</id>
+   <updated>2003-12-13T18:30:02Z</updated>
+   <summary>Some text.</summary>
+ </entry>
+
+</feed>
+http://ja.wikipedia.org/wiki/Atom#Atom_Syndication_Format
+
+
+テスト
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:admin="http://webns.net/mvcb/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+	<channel>
+		<title>サイトのタイトル</title>
+		<link>サイトのRSSのURL</link>
+		<description>サイトの内容</description>
+		<dc:language>ja</dc:language>
+		<dc:creator>サイトの作者名</dc:creator>
+		<dc:date>RSSの最終更新日時</dc:date>
+		
+		<{foreach item=i from=$rss_item}>
+			<item>
+			<title><{i.term}>記事1のタイトル</title>
+			<link><{i.linkWordUrl}>記事1のURL</link>
+			<description><{i.word_desc}>記事1の内容</description>
+			<dc:subject><{i.category}>記事1のカテゴリ名</dc:subject>
+			<dc:creator><{i.creator}>記事1の作者名</dc:creator> 
+			<dc:date><{i.published}>記事1の作成日時</dc:date>
+			</item>
+		<{/foreach}>
+
+	</channel>
+</rss>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+	<title><{$xoops_sitename}></title>
+	<link><{$xoops_url}></link>
+	<description><{$xoops_meta_description}></description>
+	<pubDate>Fri, 11 Jun 2010 12:26:27 +0000</pubDate>
+
+	<generator>http://wordpress.org/?v=2.7.1</generator>
+	<language><{$xoops_langcode}></language>
+
+<{foreach item=i from=$rss_item}>
+	<item>
+		<title><{$i.title}></title>
+		<link><{$i.link}></link>
+		<description><{$i.description}></description>
+	</item>
+<{/foreach}>
+</channel>
+</rss>

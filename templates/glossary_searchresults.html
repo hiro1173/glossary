@@ -1,0 +1,23 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+<{include file="db:glossary_view_search.html"}>
+<{if $endResult}>
+	<p>
+	<{$smarty.const._MD_GLOSSARY_SEARCHWORD}>&nbsp;:&nbsp;<{$querywords}>
+	<{if $resultCount gt 0}>
+		&nbsp;&nbsp;&nbsp;<{$resultCount}><{$smarty.const._MD_GLOSSARY_RESULTWORD}>
+	<{else}>
+		&nbsp;&nbsp;&nbsp;<{$smarty.const._MD_GLOSSARY_NOTRESULT}>
+	<{/if}>
+	</p>
+	<{if $resultCount gt 0}>
+		<{* --- <img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/h_related_word.gif" border="0" alt="" />--- *}>
+		<{foreach item=i from=$resultWords}>
+			<{include file="db:glossary_word_item.html"}>
+		<{/foreach}>
+	<{/if}>
+
+<{else}>
+	<p style="margin-top: 20px;" align="center">
+	<{$smarty.const._MD_GLOSSARY_SEARCHDESC}>
+	</p>
+<{/if}>

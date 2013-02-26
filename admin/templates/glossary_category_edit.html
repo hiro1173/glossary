@@ -1,0 +1,66 @@
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<{if $actionForm->hasError()}>
+<div class="confirm">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_EDIT_ERROR}></p>
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+	<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+</div>
+<{/if}>
+
+<form action="index.php?action=CategoryEdit" method="post" name="post" >
+
+	<{xoops_token form=$actionForm}>
+	<{xoops_input type=hidden name=categoryid value=$actionForm->get('categoryid')}>
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' class='outer'>
+	<tbody>
+
+		<tr>
+			<th colspan="2" align="center">
+			<{$smarty.const._AD_GLOSSARY_CAT_EDIT}>
+			</th>
+		</tr>
+		<{if $is_new eq 0}>
+			<tr>
+				<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORYID}></td>
+				<td class="<{cycle values="odd,even"}>"><{$actionForm->get('categoryid')}></td>
+			</tr>
+		<{/if}>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_PARENTID}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{html_options name=parentid options=$cat_options selected=$actionForm->get('parentid')}>
+			</td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_NAME}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<input type="text" name="name" value="<{$actionForm->get('name') }>" size="50" maxlength="100" />
+			</td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_DESCRIPTION}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<input type="text" name="description" value="<{$actionForm->get('description') }>" size="50" maxlength="11" />
+			</td>
+			
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_WEIGHT}></td>
+			<td class="<{cycle values="odd,even"}>">
+			<input type="text" name="weight" value="<{$actionForm->get('weight') }>" size="3" maxlength="6" />
+			</td>
+		</tr>
+		<tr>
+		<td colspan="2"  class="foot">
+			<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+			<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+		</td>
+		</tr>
+	</tbody>
+	</table>
+
+</form>

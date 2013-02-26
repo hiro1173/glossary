@@ -1,0 +1,52 @@
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<{if $actionForm->hasError()}>
+<div class="confirm">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_EDIT_ERROR}></p>
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+	<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+</div>
+<{/if}>
+
+<form name='post' id='post' action='index.php?action=CategoryDelete' method='POST'>
+	<{xoops_token form=$actionForm}>
+	<{xoops_input type=hidden name=categoryid value=$actionForm->get('categoryid')}>
+<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' class='outer'>
+<tbody>
+	<tr>
+		<th colspan="2" align="center">
+		<{$smarty.const._MD_GLOSSARY_CATEGORY_DELETE}>
+		</th>
+	</tr>
+	<tr>
+		<td class="head" width="150"><{$smarty.const._MD_GLOSSARY_CATEGORYID}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('categoryid')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_PARENTID}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('parentid')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_NAME}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('name')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_DESCRIPTION}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('description')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY_WEIGHT}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('weight')}></td>
+	</tr>
+	<tr>
+	<td colspan="2"  class="foot">
+		<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+		<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+	</td>
+</tr>
+</tbody>
+</table>
+</form>

@@ -1,0 +1,407 @@
+
+Dave Hauenstein
+Where you end and I begin¡Ä
+
+    * Home
+    * About
+    * Contact
+
+Search Box
+
+Categories
+
+    * AJAX
+    * Apple
+    * JavaScript
+    * jQuery
+    * Photography
+    *
+
+Archives
+
+    * March 2007
+    * February 2007
+    *
+
+Recent Posts
+
+    * Another In-Place Editor, jQuery Plugin
+    * Javascript and Associative Arrays
+    * Happy Valentine¡Çs Day with a new site!
+
+? Javascript and Associative Arrays
+Another In-Place Editor, jQuery Plugin
+
+UPDATE: (12-04-2007) ADDED SOME FEAURES! You can now use the escape key to cancel the action and when you initiate the in-place event, the input field becomes focused.
+
+This is the new home of the ¡ÆAnother jQuery In-Place Editor¡Ç that used to reside at http://davehauenstein.com/code/?a=inplace
+What is it?
+
+This is a script that turns any element, or an array of elements into an AJAX in place editor using one line of code. It¡Çs written using the jQuery Library, which is available free here.
+Examples
+
+Check out this page with examples. It shows a bunch of different ways the script can be implemented and the code examples.
+Download
+
+    * Version 0.9.9.2 December 4, 2007 (uncompressed - 12K)
+    * Version 0.9.9.2 December 4, 2007 (compressed - 8K)
+
+Parameter List
+
+    * url - POST URL to send edited content
+    * params - paramters sent via the post request to the server; string; ex: name=dave&last_name=hauenstein
+    * field_type - can be: text, textarea, select; default: text
+    * select_options - this is a string seperated by commas for the dropdown options, if field_type is dropdown
+    * textarea_cols - number of columns textarea will have, if field_type is textarea; default: 25
+    * textarea_rows - number of rows textarea will have, if field_type is textarea; default: 10
+    * bg_over - background color of editable elements on HOVER
+    * bg_out - background color of editable elements on RESTORE from hover
+    * saving_text - text to be used when server is saving information; default: ¡ÆSaving¡Ä¡Ç
+    * saving_image - specify an image location instead of text while server is saving; default: uses saving text
+    * value_required - if set to true, the element will not be saved unless a value is entered
+    * element_id - name of parameter holding element_id; default: element_id
+    * update_value - name of parameter holding update_value; default: update_value
+    * original_html - name of parameter holding original_html; default: original_html
+    * save_button - image button tag to use as ¡ÈSave¡É button
+    * cancel_button - image button tag to use as ¡ÈCancel¡É button
+    * callback - call function instead of submitting to url
+
+The server side of this script is the easiest part. Whatever you print to the browser will be injected into the original element that the in-place editor was attached to. Below is what gets passed to the server via a POST request.
+
+    * update_value=content_you_edited
+    * element_id=id_of_editable_element
+    * original_html=original_text_before_clicked
+
+Posted inAJAX, JavaScript, jQueryMarch 6th, 2007
+42 Comments to 'Another In-Place Editor, jQuery Plugin'
+
+Subscribe to comments with RSS or TrackBack to 'Another In-Place Editor, jQuery Plugin'.
+
+   1.
+      Ritesh Agrawal said,
+      March 14th, 2007 at 1:10 pm
+
+      Hi dave,
+
+      I am planning to use your editinplace plugin..but have few questions..how can I use callback mechanism..I want to update two different div when user user click on save button¡Äcan you provide an example of this..
+
+      Regards,
+      Ritesh
+   2.
+      fendtele83 said,
+      March 15th, 2007 at 12:30 am
+
+      Ritesh,
+
+      I updated my examples page to show how the callback function works to update 2 divs. Check it out here: http://davehauenstein.com/code/inplace.php and let me know if you have any more questions. Thanks for using!!
+   3.
+      dea said,
+      March 18th, 2007 at 10:28 pm
+
+      Been trying to use images for the save and cancel buttons, but no luck. How is this specific tag supposed to be used? I¡Çm current putting in save_button: ¡È¡É. The image shows, but it no longer submits properly¡Ä
+   4.
+      Lin said,
+      March 19th, 2007 at 4:37 am
+
+      Hi Dave,
+
+      I have started using your Jquery In Place editor in my php pages.
+      Its a great tool :) .
+      I have lot of similar fields which uses the same drop down menu. Is there any way that i can declare an array and pass this array as ¡Èselect_options¡É.
+
+      Thanks in advance
+
+      lin
+   5.
+      Rob said,
+      March 20th, 2007 at 7:15 am
+
+      Hi Dave,
+      I¡Çm using your plugin on a project of mine and was wondering whether it would be possible to trigger the editing of text from another element, such as a link instead of actually clicking the text itself.
+      Something like:
+      $(document).ready(function(){
+      $(¡É.trigger¡É).click(function() {
+      $(this).parent().children(¡É.edit_comment¡É).click();
+      });
+      $(¡É.edit_comment¡É).editInPlace({ ¡Ä.
+      (doesn¡Çt work)
+
+      Cheers,
+
+      Rob
+   6.
+      Felix said,
+      March 20th, 2007 at 9:02 am
+
+      Hi
+
+      Thanks for the nice inplace editor plugin. Only I have one question: is it possible to use a ajax request AND a callback? I want to save things in a database and update some other div. Now you only can use one.
+      Thanks!
+   7.
+      fendtele83 said,
+      March 20th, 2007 at 9:34 am
+
+      @Dea: if you go to this URL: http://davehauenstein.com/code/scripts/jquery.inplace.source.js and you look at the default settings for the save_button and cancel_button parameters i think it¡Çll help you see how to pass the images to the jQuery inplace function. If you still don¡Çt understand post another comment and i¡Çll email you.
+
+      @lin: Unfortunately it¡Çs not possible with the way the inplace editor is set¡Ä but that is definately something i should look into doing¡Ä If you¡Çd like to add that functionality let me know and i¡Çll definately post it to this site.
+
+      @Felix: yea, you can use AJAX at the same time as the callback function¡Ä You just need to put your own AJAX function in the callback function¡Ä see the page of examples: http://davehauenstein.com/code/inplace.php and look at example 4. If you still don¡Çt get it post another comment and I¡Çll write the code for you.
+   8.
+      fendtele83 said,
+      March 20th, 2007 at 1:07 pm
+
+      @Rob: Sorry i missed your comment before¡Ä but that¡Çs actually a good idea that you have and right now I¡Çm not sure if it can be done with the current setup. I¡Çm going to try to look into it tonight and see what i can do for you. I¡Çll send you an email if i get somewhere¡Ä
+   9.
+      Rob said,
+      March 21st, 2007 at 11:09 am
+
+      That¡Çd be great if you could come up with something! Been puzzling me for a while and I don¡Çt have time to modify/write my own version of the plugin as my deadline is getting a bit close! I did modify your plugin a bit so that the width of the text box that displays can be altered as well as the textarea, but I compressed it and forgot to save the uncompressed original!
+      Look forward to hearing from you.
+
+      Rob
+  10.
+      Vaska said,
+      March 22nd, 2007 at 7:12 am
+
+      I added one for myself, but it would be nice to have a way to control maxlength on the inputs¡Ä ;)
+  11.
+      fendtele83 said,
+      March 22nd, 2007 at 1:02 pm
+
+      good idea Vaska, i guess there¡Çs still a lot of work to be done on this plugin¡Ä I haven¡Çt had the time lately, but i¡Çll go through the code and add a bunch of refinements for version 1.0¡Ä
+  12.
+      lin said,
+      March 26th, 2007 at 1:37 am
+
+      Dave¡Ä
+      If you could add support for arrays¡Ä then it would be wonderful..
+
+      thank you
+
+      :)
+  13.
+      Rob said,
+      March 26th, 2007 at 4:10 am
+
+      Any luck with the onclick functionality? I think my email may have been playing up so if you did send me something I never got it!
+
+      Rob
+  14.
+      Pat said,
+      March 27th, 2007 at 11:47 pm
+
+      David,
+
+      This is the best overall in-place editor plugin for jQuery. Thank you!
+
+      Though very supplementary, I¡Çd love this: click to edit, then the textarea appears without interfering with the line-height. In other words, a text-area appears sized to the exact dimensions of the editable DIV. (Save/Cancel buttons would have to float or otherwise function transparently.)
+  15.
+      Pat said,
+      March 28th, 2007 at 12:56 am
+
+      One more thing¡Ä the rest of the script seems to fail if it comes across an element that doesn¡Çt exist on the page.
+  16.
+      Karl said,
+      March 31st, 2007 at 10:53 am
+
+      Hello! Thanks for this plugin.
+
+      As Pat said before, it seems that it doesn¡Çt work if we generate a field after the page is loaded¡Ä Does it? If it does, what do I have to do? ^^
+
+      Thanks a lot and great job anyway!
+  17.
+      Pat said,
+      April 1st, 2007 at 2:30 am
+
+      Focusing the input/textarea would be stupendous!
+  18.
+      BillyG said,
+      April 5th, 2007 at 7:44 pm
+
+      Hi!
+
+      Great plugin, I like it!
+
+      But I have spent hours of ¡Èdebugging¡É my code to figure out why something does on Firefox work but not on IE:
+
+      Even on your examples, if you click on an active for editing area, change something and then hit the enter key instead of clicking on ¡Èsave¡É, the changes are gone on IE! On Firefox is works as it should / in a way that it is more usable and easy after typing some text: Not to get the mouse again, pointing and clicking on ¡Èsave¡É - only hitting enter.
+
+      Can you give a hint please how to get IE having the same behavior as Firefox? And maybe it would be better to ¡Ècorrect¡É this also on your next release.
+
+      Thx
+      Billy
+  19.
+      Gustavo Cardoso said,
+      April 23rd, 2007 at 12:07 pm
+
+      Hi man¡Ä thanx for the perfect plugin you¡Çve created. Thanx a lot for that!!!
+      I have one doubt¡Ä can i set error messages in this plugin? For exemple¡Ä. i¡Çve submitted a data from the input field and my Php file has verified that the dtata is invalid. Then i want to display some message in the application, like an JS alert, for exemple¡Ä. Can i do this with In-Place Editor?
+
+      Thanx for the help!!!
+  20.
+      Unifant said,
+      April 28th, 2007 at 6:00 am
+
+      Hi, this is a nice Plugin. Thanks for the great work.
+      It would be very nice, when it would support following features:
+      - onblur : cancel Clicking outside editable area cancels changes. Clicking submit button submits changes.
+      - onblur : submit Clicking outside editable area submits changes.
+      - onblur : ignore Click outside editable area is ignored. Pressing ESC cancels changes. Clicking submit button submits changes.
+      - postload: for loading content after click (important, if shown text differs from real content)
+      These features are implementet in jEditable by Mika Tuupola, but that plugin has not as good callback function as yours. I use both, but using only one would be better.
+      Thanks and greets
+      Yasin
+  21.
+      longleg said,
+      May 11th, 2007 at 1:34 am
+
+      Hello! Thanks for your plugin.
+      i was a chinese student.
+      i wants you know that your plugin was round all over the world.
+      many people from another country also know your Great plugin !
+  22.
+      wayak said,
+      May 11th, 2007 at 7:55 am
+
+      I want use yor code but before i¡Çm having a question
+
+      Dou you have a solution to edit a picture and a date(calendar) in edit in place ?
+      thx for your help
+  23.
+      Simon Janes said,
+      May 21st, 2007 at 9:30 am
+
+      How do I get the callback function to receive the HTML element that triggered the callback? RIght now I¡Çm getting ( undefined, new_html, old_html, ajax_params ) . I¡Çm setting the handler with $(¡Éspan.inline¡É) for all the spans with the inline class.
+  24.
+      Marco Antonio said,
+      May 21st, 2007 at 2:18 pm
+
+      Hi Dave. Is it possible to show us your inplace.php code? I¡Çll want to convert to ColdFusion code. Congratulations for this piece of code!
+  25.
+      Simon Janes said,
+      May 23rd, 2007 at 9:39 am
+
+      I¡Çd cancel the comment I made earlier--I solved my problem and it wasn¡Çt related to the plugin. :)
+  26.
+      Vitaliy said,
+      June 1st, 2007 at 8:26 am
+
+      Hello!
+
+      How I can add attributes such as ¡Æclass¡Ç or ¡Çstyle¡Ç to elements ¡Æinput¡Ç, ¡Ætextarea¡Ç, ¡Çselect¡Ç?
+
+      Thanks,
+      Vitaliy
+  27.
+      ionutz said,
+      June 13th, 2007 at 7:36 am
+
+      if this will complete edit when you click outside the form, will be the coolest thing :P
+      anyway, this is great plugin.
+  28.
+      Anthony said,
+      June 16th, 2007 at 3:22 am
+
+      I have the same issues with IE. Hope it is fixed soon. A couple other things I miss from jEditable.
+
+      * Only one editable element at a time (onblur should cancel changes and revert text)
+      * Make the add and cancel buttons optional
+
+      Looking forward to these updates
+  29.
+      Anthony said,
+      June 16th, 2007 at 6:54 am
+
+      One other thing that is kind of annoying is that when you click to edit something it will not focus into the field you are editing. Can this be fixed?
+
+      Thanks, great work here btw¡Ä
+  30.
+      Anthony said,
+      June 16th, 2007 at 3:48 pm
+
+      Sorry to bombard you with questions, but other than the focus thing which is important, I would like to have my buttons show up under the text area edit box. I¡Çm sure this is as simple as a line break before the buttons. Can you tell me where in the JS I can add that? Maybe it could be an option?
+  31.
+      nebulous said,
+      June 19th, 2007 at 8:42 am
+
+      Didn¡Çt research to see if this had other repercussions, but I added an escape() around new_html on line 256. Otherwise a semicolon would stop text input.
+
+      data: settings.update_value + ¡Æ=¡Ç + escape(new_html) + ¡Æ&¡Ç + settings.element_id + ¡Æ=¡Ç +
+  32.
+      Ben Strackany said,
+      June 25th, 2007 at 4:32 pm
+
+      Nice in-place editor, I like it. A few tips for users:
+      - For the user hitting enter in IE, you may be able to use jQuery to capture the keydown event for the input element.
+      - There¡Çs also an ¡Èerror¡É setting that you can override with your own function. This allows to you handle server-side validation by having your server return a 500 error along with an error message if the submitted value is invalid.
+  33.
+      Josh said,
+      July 5th, 2007 at 1:00 pm
+
+      Hi David,
+
+      Nice plugin for jquery. My question is can this be used with dates? I¡Çm having trouble passing the proper format back to my update page, when I use an alert it seems as if the in place editor script is removing the spaces so the format comes out something like ¡Æ7/25/20079:00:00AM¡Ç. I believe the missing space between the 7 in 2007 and the 9 in 9:00:00AM is causing the problem. Am I doing something wrong?
+
+      Thanks for any help.
+      Josh
+  34.
+      John Farrar said,
+      July 16th, 2007 at 11:00 pm
+
+      When is it going gold?
+  35.
+      Jason said,
+      July 18th, 2007 at 7:22 pm
+
+      Just like everyone else is saying, wonderful plug-in. This is the best out of the bunch on the jQuery page for in-place editing! I need to be able to use a button, like ¡Æedit¡Ç or just an object besides the text itself to trigger the input/textfield editing. I¡Çm going to take a look at the source to see what I can implement myself, but if you¡Çve updated it recently and added this functionality, it would be great to see it! Thanks, and keep up the awesome work.
+  36.
+      maserg said,
+      July 19th, 2007 at 7:36 am
+
+      to disable inline-editor-form submitting under IE you can change that line
+      jQuery(this).html('¡Ç +use_field_type + ¡Æ ¡Æ + buttons_code + ¡Æ¡Ç);
+
+      hello from Ukraine!
+  37.
+      maserg said,
+      July 19th, 2007 at 7:39 am
+
+      oops! comment problem?
+
+      so, change it to that line
+
+      jQuery(this).html('¡Ç + use_field_type + ¡Æ ¡Æ + buttons_code + ¡Æ¡Ç);
+  38.
+      maserg said,
+      July 19th, 2007 at 7:40 am
+
+      jQuery(this).html(¡Ç<form class=¡Éinplace_form¡É style=¡Édisplay: inline; margin: 0; padding: 0;¡É onsubmit=¡Éreturn false¡É>¡Ç +
+      use_field_type + ¡Æ ¡Æ + buttons_code + ¡Æ</form>¡Ç);
+  39.
+      Alex said,
+      August 10th, 2007 at 1:35 pm
+
+      Exactly that problem above I experience too. I think i try to fix it on my own, if Dave will not make it soon ;>
+  40.
+      Alex said,
+      August 10th, 2007 at 2:41 pm
+
+      ok, i did it on my own.
+
+      my version of this plugin is pretty much customized due to my special requirements, so i cannot just paste the code here. (and i extended the plugin off version 0.9.6, therefore my code would not be very useful)
+
+      although here the snippet which prevents the form of submission in IE:
+
+      if($.browser.msie && settings.field_type == ¡Ètext¡É) {
+      $(this).keydown(function(e) {
+      if(e.keyCode == 13) {
+      //save the data¡Ä
+  41.
+      Jason said,
+      September 17th, 2007 at 2:08 pm
+
+      Hey there, it¡Çs me again. I fixed my earlier problem¡Äbut now I have a new one. I wanted to have my ¡ÆEdit¡Ç link open up a group of text fields, and I succeeded¡Äbut only by making a trigger call to the ¡Çselect¡Ç functionality within this plugin.
+
+      This works, but the problem is that it makes N posts to the back-end where N is the number of fields I have being triggered. This was an ugly work-around¡Äand now I need to make it so it does ONE post per save, not N posts per save. Hmm¡Äany ideas?
+
+:: Trackbacks/Pingbacks :

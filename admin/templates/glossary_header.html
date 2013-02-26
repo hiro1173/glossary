@@ -1,0 +1,54 @@
+<{$module_header}>
+
+<{* --- Admin Navigation --- *}>
+<div class="adminnavi">
+    <a href="./index.php"><{$module_info.module_name}></a>
+<{foreach from=$bread_crumbs item="item" name="item_loop"}>
+&raquo;&raquo;
+<{if $item.url}>
+<span><a href="<{$item.url|xoops_escape:link}>"><{$item.name}></a></span>
+<{else}>
+<span class="adminnaviTitle"><{$item.name}></span>
+<{/if}>
+<{/foreach}>
+</div>
+<{* --- Option Menu --- *}>
+<div align="right">
+    <a href="./../index.php"><img src="../images/icon/application.png"><{$smarty.const._AD_GLOSSARY_GOMODULES}></a>&nbsp;&nbsp;&nbsp;
+    <a href="./../../legacy/admin/index.php?action=PreferenceEdit&confmod_id=<{$module_info.module_id}>"><img src="../images/icon/application_edit.png"><{$smarty.const._PREFERENCES}></a>&nbsp;&nbsp;&nbsp;
+    <a href="./../../legacy/admin/index.php?action=ModuleUpdate&dirname=<{$module_info.module_path}>"><img src="../images/icon/update.gif"><{$smarty.const._AD_LEGACY_LANG_UPDATE}></a>&nbsp;&nbsp;&nbsp;
+    <a href="./../../legacy/admin/index.php?action=Help&amp;dirname=<{$module_info.module_path}>"><img src="../images/icon/help.png"><{$smarty.const._HELP}></a>
+</div>
+
+<{* --- Main Tab --- *}>
+<div id="mainTab">
+    <ul>
+<{foreach from=$set_menu item=i name=item_loop}>
+<{if $i.show}>
+<{if $smarty.foreach.item_loop.iteration eq $set_menu_no}>
+        <li id="current"><a href="./../<{$i.link}>"><{$i.title}></a></li>
+<{else}>
+        <li><a href="./../<{$i.link}>"><{$i.title}></a></li>
+<{/if}>
+<{/if}>
+<{/foreach}>
+    </ul>
+</div>
+<div id="mainTabLine">&nbsp;</div>
+
+<{if $set_menu_desc}>
+<div class="menumsg"><{$set_menu_desc}></div>
+<{else}>
+<{foreach from=$set_menu item=i name=item_loop}>
+<{if $i.show}>
+<{if $smarty.foreach.item_loop.iteration eq $set_menu_no}>
+        <div class="menumsg"><{$i.description}></div>
+<{/if}>
+<{/if}>
+<{/foreach}>
+<{/if}>
+
+<{* --- Sub Tab --- *}>
+<{$adminSubMenu}>
+<{* --- Confirm Mssage --- *}>
+<{if $confirm_mssage}><div class="confirm"><{$confirm_mssage}></div><{/if}>

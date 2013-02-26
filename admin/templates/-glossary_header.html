@@ -1,0 +1,51 @@
+<link rel='stylesheet' type='text/css' href='./templates/stylesheets/module.css'>
+
+<{$moduleHeader}>
+<{* --- Admin Navigation --- *}>
+<div class="adminnavi">
+    <a href="./index.php"><{$module_name}></a>
+    <{foreach from=$bread_crumbs item="item" name="item_loop"}>
+        &raquo;&raquo;
+        <{if $item.url}>
+            <span><a href="<{$item.url}>"><{$item.name}></a></span>
+        <{else}>
+            <span class="adminnaviTitle"><{$item.name}></span>
+        <{/if}>
+    <{/foreach}>
+</div>
+<h3 class="admintitle"><{$module_name}></h3>
+<{* --- Option Menu --- *}>
+<div align="right">
+    <a href="./../index.php"><img src="../images/icon/application.png"><{$smarty.const._AD_GLOSSARY_GOMODULES}></a>&nbsp;&nbsp;&nbsp;
+    <a href="./../../legacy/admin/index.php?action=PreferenceEdit&confmod_id=<{$module_id}>"><img src="../images/icon/application_edit.png"><{$smarty.const._PREFERENCES}></a>&nbsp;&nbsp;&nbsp;
+    <a href="./../../legacy/admin/index.php?action=ModuleUpdate&dirname=<{$modulePath}>"><img src="../images/icon/update.gif"><{$smarty.const._AD_LEGACY_LANG_UPDATE}></a>&nbsp;&nbsp;&nbsp;
+    <a href="./../../legacy/admin/index.php?action=Help&amp;dirname=<{$modulePath}>"><img src="../images/icon/help.png"><{$smarty.const._HELP}></a>
+</div>
+<{* --- Main Tab --- *}>
+<div id="mainTab">
+    <ul>
+    <{foreach from=$menu_array item="i" name="item_loop"}>
+        <{if $i.show}>
+            <{if $smarty.foreach.item_loop.iteration eq $set_menu_no}>
+                <li id="current"><a href="./../<{$i.link}>"><{$i.title}></a></li>
+            <{else}>
+                <li><a href="./../<{$i.link}>"><{$i.title}></a></li>
+            <{/if}>
+        <{/if}>
+    <{/foreach}>
+    </ul>
+</div>
+<div id="mainTabLine">&nbsp;</div>
+<{if $set_menu_desc}>
+    <div class="menumsg"><{$set_menu_desc}></div>
+<{/if}>
+
+<{* --- Sub Tab --- *}>
+<{$adminSubMenu}>
+
+<{* --- Alert Message --- *}>
+<{if $set_mssage}>
+    <div class="confirm">
+        <{$set_mssage}>
+    </div>
+<{/if}>

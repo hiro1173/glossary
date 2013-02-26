@@ -1,0 +1,51 @@
+<{* --- Header --- *}>
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<{* --- addd data --- *}>
+<ul class='toptab'>
+  <li><a href='index.php?action=CategoryEdit'><{$smarty.const._AD_GLOSSARY_CAT_ADD}></a></li>
+</ul>
+<br />
+
+<{if count($categories) gt 0}>
+
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' >
+	<tr>
+	<th>
+		<{$smarty.const._AD_GLOSSARY_ID}>
+	</th>
+	<th>
+		<{$smarty.const._MD_GLOSSARY_CATEGORY}>
+	</th>
+	<th>
+		<{$smarty.const._MD_GLOSSARY_CATEGORY_DESCRIPTION}>
+	</th>
+	<th>
+		<{$smarty.const._MD_GLOSSARY_CATEGORY_WEIGHT}>
+	</th>
+	<th><{$smarty.const._AD_GLOSSARY_ACTION}></th>
+	</tr>
+	<{foreach item=category from=$categories}>
+		<tr class="<{cycle values="even, odd"}>">
+		<td align='center'><{$category.categoryid}></td>
+		<td>
+		<{$category.prefix}>
+		<{$category.name}>
+		</td>
+		<td width='400'><{$category.description}></td>
+		<td align='center'><{$category.weight}></td>
+
+		<td align='center'>
+			<a href='index.php?action=CategoryEdit&amp;categoryid=<{$category.categoryid}>'>
+				<img src="../images/icon/file_edit.png" alt="<{$smarty.const._AD_GLOSSARY_EDIT}>">
+			</a>&nbsp;&nbsp;
+			<a href='index.php?action=CategoryDelete&amp;categoryid=<{$category.categoryid}>'>
+				<img src="../images/icon/file_delete.png" alt="<{$smarty.const._AD_GLOSSARY_DELETE}>">
+			</a>
+		</td>
+		</tr>
+	<{/foreach}>
+	</table>
+<{/if}>
+
+

@@ -1,0 +1,71 @@
+
+
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+<{* --- モジュール説明文 --- *}>
+<{if $config.topagereadmeused}>
+<p><{$config.topagereadme|xoops_escape}></p>
+<{/if}>
+
+<{* --- 検索ブロック --- *}>
+<{include file="db:glossary_view_search.html"}>
+
+<{* --- 英字５０音で探す --- *}>
+<{if $config.letterblockused}>
+	<{include file="db:glossary_view_letter.html"}>
+<{/if}>
+
+<{* --- 注目の用語 --- *}>
+
+<{if $blolck_word gt 0}>
+<ul>
+<{foreach item=i from=$blolck_word}>
+<{include file="db:glossary_word_item.html"}>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<{* --- 新着用語・用語ランキング --- *}>
+<{if $new_words_block_used}>
+	<{include file="db:glossary_resent.html"}>
+<{/if}>
+
+<div class="clear">
+</div>
+
+<{* --- カテゴリ一覧 --- *}>
+<{* --- Use Category --- *}>
+<{if $config.use_category}>
+	<{if $config.categoryblockused}>
+		<div id="categorylist">
+		<{if count($categories) gt 0}>
+			<hr />
+			<{$smarty.const._MD_GLOSSARY_CATEGORY_LIST}>
+			<hr />
+			<ul>
+			<{foreach item=i from=$categories}>
+				<li>
+				<a href="<{$i.linkCategoryUrl}>"><{$i.name|xoops_escape}></a>
+				</li>
+			<{/foreach}>
+			</ul>
+		<{else}>
+			<{$erorrNoCategories}>
+		<{/if}>
+		</div>
+	<{/if}>
+<{/if}>
+
+<{* --- タグクラウド --- *}>
+<{if count($tag_cloud) gt 0}>
+<div id="collapsible">
+<p class="tags">
+<{foreach item=i from=$tag_cloud}>
+<{if $config.use_mod_rewrite}>
+<a href="tag/<{$i.tag}>/" title="<{$i.tag|xoops_escape}>" rel="<{$i.tag|xoops_escape}>" style="font-size:<{$i.size}>;"><{$i.tag|xoops_escape}></a>
+<{else}>
+<a href="index.php?action=TagView&tag=<{$i.tag}>" title="<{$i.tag|xoops_escape}>" rel="<{$i.tag|xoops_escape}>" style="font-size:<{$i.size}>;"><{$i.tag|xoops_escape}></a>
+<{/if}>
+<{/foreach}>
+</p>
+</div>
+<{/if}>

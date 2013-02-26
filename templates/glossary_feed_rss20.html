@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title><{$title}></title>
+    <link><{$xoops_url}></link>
+    <pubDate>Fri, 11 Jun 2010 12:26:27 +0000</pubDate>
+    <language><{$xoops_langcode}></language>
+<{foreach item=i from=$rss_item}>
+    <item>
+        <title><{$i.title}></title>
+        <link><{$i.link}></link>
+        <description><{$i.description}></description>
+    </item>
+<{/foreach}>
+</channel>
+</rss>

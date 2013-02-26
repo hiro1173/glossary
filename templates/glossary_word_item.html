@@ -1,0 +1,34 @@
+<div class="<{cycle values="word-even, word-odd"}>">
+
+<{if $xoops_isadmin}>
+	<{if $i.published gt 0}>
+		[非公開]
+	<{/if}>
+<{/if}>
+	<a href="<{$i.linkWordUrl}>"><{$i.term|xoops_escape}></a>&nbsp;&nbsp;
+	<{* --- Use Category --- *}>
+	<{if $config.use_category}>
+		[<{$i.category|xoops_escape}>]<br />
+	<{/if}>
+	<div style="margin-left: 30px; margin-top: 5px; margin-bottom: 5px;">
+		<{* --- マルチバイト利用 --- *}>
+		<{if $config.use_multibytes}>
+			<strong><{$smarty.const._MD_GLOSSARY_WORD_PROC}>&nbsp;:&nbsp;</strong><{$i.proc}><br />
+			<strong><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}>&nbsp;:&nbsp;</strong><{$i.english|xoops_escape}><br />
+		<{/if}>
+		<strong><{$smarty.const._MD_GLOSSARY_EXPLANATION}>&nbsp;:&nbsp;</strong><{$i.word_desc}>
+		<{if count($i.tags) gt 0}>
+			<div class="tags">
+			<img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/icon/tag_blue.png" alt="<{$smarty.const._MD_GLOSSARY_TAG}>" />
+			<{foreach item=tag from=$i.tags}>
+				<{$tag}>
+			<{/foreach}>
+			</div>
+		<{/if}>
+		<div class="button">
+			<span id="grey-button"><a href="<{$i.linkWordUrl}>" class="grey-button pcb"><span><{$smarty.const._MD_GLOSSARY_READMORE}></span></a></span>
+		</div>
+
+
+	</div>
+</div>

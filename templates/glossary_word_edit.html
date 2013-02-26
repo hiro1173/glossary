@@ -1,0 +1,157 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+<{* --- 入力エラー表示 --- *}>
+<{if $actionForm->hasError()}>
+<div class="haserror">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_EDIT_ERROR}></p>
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+	<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+</div>
+<{/if}>
+<form name='post' id='post' action='index.php?action=WordEdit' method='POST' style='margin: 0;'>
+	<{* --- トークン --- *}>
+	<{xoops_token form=$actionForm}>
+
+	<{* --- 隠し属性で、ID のセット --- *}>
+	<{xoops_input type=hidden name=wordid value=$actionForm->get('wordid')}>
+	<{xoops_input type=hidden name=hits value=$actionForm->get('hits')}>
+
+	<{* --- Use Category --- *}>
+	<{if $config.use_category}>
+		<{xoops_input type=hidden name=categoryid value=$actionForm->get('categoryid')}>
+	<{/if}>
+	<{* --- Use Multibytes --- *}>
+	<{if $config.use_multibytes}>
+		<{xoops_input type=hidden name=proc value=$actionForm->get('proc')}>
+		<{xoops_input type=hidden name=english value=$actionForm->get('english')}>
+	<{/if}>
+
+
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' class='outer'>
+	<tbody>
+		<tr>
+			<th colspan="2" align="center">
+			<{$smarty.const._MD_GLOSSARY_WORD_EDIT}>
+			</th>
+		</tr>
+		<{if $actionForm->get('wordid') > 0}>
+			<tr>
+			<td class="head"width="150"><{$smarty.const._MD_GLOSSARY_WORD_ID}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{$actionForm->get('wordid')}>
+			</td>
+			</tr>
+		<{/if}>
+
+		<{* --- Use Category --- *}>
+		<{if $config.use_category}>
+			<tr>
+				<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORY}></td>
+				<td class="<{cycle values="odd,even"}>">
+				<select name="categoryid">
+					<{xoops_optionsArray id=categoryid value=categoryid label=name from=$categories default=$actionForm->get('categoryid')}>
+				</select>
+				</td>
+			</tr>
+		<{/if}>
+
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_TERM}></td>
+			<td class="<{cycle values="odd,even"}>">
+			<{xoops_input type=text name=term value=$actionForm->get('term') size=50 maxlength=255}>
+			</td>
+		</tr>
+
+		<{* --- Use Multibytes --- *}>
+		<{if $config.use_multibytes}>
+			<tr>
+				<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_PROC}></td>
+				<td class="<{cycle values="odd,even"}>">
+					<{xoops_input type=text name=proc value=$actionForm->get('proc') size=50 maxlength=255}>
+				</td>
+			</tr>
+			<tr>
+				<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}></td>
+				<td class="<{cycle values="odd,even"}>">
+					<{xoops_input type=text name=english value=$actionForm->get('english') size=50 maxlength=255}>
+				</td>
+			</tr>
+		<{/if}>
+
+		<tr>
+			<{* --- Use FCKeditor --- *}>
+			<{if $config.use_fckeditor}>
+				<td class='odd' colspan='2'>
+					<{fck_htmlarea name=description width=100% height=500px toolbar=Custom skin=silver value=$actionForm->get('description')}>
+				</td>
+			<{else}>
+				<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_DESCRIPTION}></td>
+				<td class="<{cycle values="odd,even"}>">
+					<{xoops_dhtmltarea name=description cols=100% rows=15 value=$actionForm->get('description')}>
+				</td>
+			<{/if}>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_REFERENCE}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{xoops_input type=text name=reference value=$actionForm->get('reference') size=50 maxlength=100}>
+			</td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_REFERENCE_URL}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{xoops_input type=text name=url value=$actionForm->get('url') size=50 maxlength=100}>
+			</td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_BLOCK}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{xoops_input type=radio name=block default=$actionForm->get('block') value=1}><{$smarty.const._YES}>&nbsp;
+				<{xoops_input type=radio name=block default=$actionForm->get('block') value=0}><{$smarty.const._NO}></td>
+			</td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_PUBLISHED}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{xoops_input type=radio name=published default=$actionForm->get('published') value=1}><{$smarty.const._YES}>&nbsp;
+				<{xoops_input type=radio name=published default=$actionForm->get('published') value=0}><{$smarty.const._NO}></td>
+			</td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_TAGS}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{xoops_input type=text id=tags name=tags value=$entry_tags size=70}><{$smarty.const._MD_GLOSSARY_TAG_DSC}>
+			</td>
+		</tr>
+		<{if $actionForm->get('hits')}>
+			<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_HITS}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{$actionForm->get('hits')}>
+			</td>
+			</tr>
+		<{/if}>
+		<tr>
+			<td colspan="2" class="foot" align="center">
+				<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+				<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</form>
+
+<{* --- 人気のタグリスト --- *}>
+<div id="collapsible">
+	<h3><{$smarty.const._MD_GLOSSARY_TAG_RESULT}></h3>
+	<p><small><{$smarty.const._MD_GLOSSARY_TAG_USEDSC}></small></p>
+	<p id="popularTags" class="tags">
+		<{if count($tag_cloud) gt 0}>
+			<{foreach item=i from=$tag_cloud}>
+				<span title="<{$i.tag}>" style="font-size:<{$i.size}>" onclick="addTag(this)"><{$i.tag}></span> 
+			<{/foreach}>
+		<{/if}>
+	</p>
+</div>

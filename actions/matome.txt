@@ -1,0 +1,26 @@
+<?php
+
+
+
+
+http://localhost/dev/modules/glossary/admin/index.php?action=TagList&sort=-1&perpage=10&start=10
+
+
+		$render->setAttribute("pageNavi", $this->mFilter->mNavi);
+
+
+/class/smarty/plugins/function.xoops_pagenavi.php
+
+
+$navi->renderURLForPage($navi->getPrivStart()));
+
+スタートページを求める
+$navi->getPrivStart()
+
+sort=-1&perpage=10　を作る
+$navi->renderUrlForPage( )
+
+XCube_PageNavigator.class.php
+
+?>
+

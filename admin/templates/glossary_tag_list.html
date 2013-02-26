@@ -1,0 +1,44 @@
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<{if count($tag_array) gt 0}>
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' >
+	<tr>
+		<th align='center'>
+			<{$smarty.const._AD_GLOSSARY_TAG}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_TAG}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_TAG}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._AD_GLOSSARY_TAG_COUNTWORD}>&nbsp;
+			<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_COUNT}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_COUNT}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='100'><{$smarty.const._AD_GLOSSARY_ACTION}></th>
+	</tr>
+	<{foreach item=module from=$tag_array}>
+		<tr class="<{cycle values='even, odd'}>">
+			<td><{$module.tag}></td>
+			<td align='center'><{$module.count}></td>
+			<td align='center'>
+				<a href='index.php?action=TagEdit&tag=<{$module.tag}>'>
+					<img src='../images/icon/file_edit.png' alt='<{$smarty.const._AD_GLOSSARY_EDIT}>'>
+				</a>&nbsp;&nbsp;
+				<a href='index.php?action=TagDelete&tag=<{$module.tag}>'>
+					<img src='../images/icon/file_delete.png' alt='<{$smarty.const._AD_GLOSSARY_DELETE}>'>
+				</a>
+			</td>
+		</tr>
+	<{/foreach}>
+	</table>
+<{/if}>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

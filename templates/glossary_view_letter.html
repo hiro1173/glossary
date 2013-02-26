@@ -1,0 +1,59 @@
+<div id="letter-block">
+	<fieldset class="item" style="border:1px solid #778;margin:1em 0em;background-color:transparent;">
+		<legend class="letterHead">
+			<{$smarty.const._MD_GLOSSARY_LETTERSEARCH}>
+		</legend>
+
+		<div id="letter-line">
+			<{* --- Alphabet --- *}>
+			<p class="letter">
+			<{foreach item=i from=$alpha.initial}>
+				<{$i.separator}>
+				<{if $i.total}>
+					<{if $config.use_mod_rewrite}>
+						<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letter/<{$i.id}>/"><{$i.linktext|xoops_escape}></a>
+					<{else}>
+						<a href="index.php?action=LetterList&amp;init=<{$i.id}>"><{$i.linktext|xoops_escape}></a>
+					<{/if}>
+				<{else}>
+					<{$i.linktext}>
+				<{/if}>
+			<{/foreach}>
+			</p>
+			
+			<{* --- Multibytes --- *}>
+			<{if $config.use_multibytes}>
+				<p class="letter">
+				<{foreach item=i from=$japanese.initial}>
+					<{$i.separator}>
+					<{if $i.total}>
+						<{if $config.use_mod_rewrite}>
+							<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letter/<{$i.id}>/"><{$i.linktext|xoops_escape}></a>
+						<{else}>
+							<a href="index.php?action=LetterList&amp;init=<{$i.id}>"><{$i.linktext|xoops_escape}></a>
+						<{/if}>
+					<{else}>
+						<{$i.linktext}>
+					<{/if}>
+				<{/foreach}>
+				</p>
+			<{/if}>
+
+			<{* --- Number --- *}>
+			<p class="letter">
+			<{foreach item=i from=$number.initial}>
+				<{$i.separator}>
+				<{if $i.total}>
+					<{if $config.use_mod_rewrite}>
+						<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letter/<{$i.id}>/"><{$i.linktext|xoops_escape}></a>
+					<{else}>
+						<a href="index.php?action=LetterList&amp;init=<{$i.id}>"><{$i.linktext|xoops_escape}></a>
+					<{/if}>
+				<{else}>
+					<{$i.linktext}>
+				<{/if}>
+			<{/foreach}>
+			</p>
+		</div>
+	</fieldset>
+</div>

@@ -1,0 +1,18 @@
+<div id="module_breadcrumbs">
+<ul>
+<li><a href="<{$xoops_url}>/">TOP</a></li>
+<{foreach from=$xoops_breadcrumbs item="item"}>
+<{if $item.url}>
+<li><a href="<{$item.url}>"><{$item.name|xoops_escape}></a></li>
+<{else}>
+<li><{$item.name|xoops_escape}></li>
+<{/if}>
+<{/foreach}>
+</ul>
+</div>
+<div class="closer">&nbsp;</div>
+<div id="sc_menu">
+    <a href='<{$smarty.const.XOOPS_MODULE_URL}>/glossary/index.php?action=TagCloud'><{$smarty.const._MD_GLOSSARY_TAG_CLOUD}></a>&nbsp;&nbsp;
+    <a href='<{$smarty.const.XOOPS_MODULE_URL}>/glossary/'><{$smarty.const._MD_GLOSSARY_HOME}></a>&nbsp;&nbsp;
+<{if $xoops_userid}><a href='<{$smarty.const.XOOPS_MODULE_URL}>/glossary/index.php?action=WordEdit'><{$smarty.const._MD_GLOSSARY_WORD_ADD}></a><{/if}>
+</div>

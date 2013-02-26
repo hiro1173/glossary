@@ -1,0 +1,33 @@
+<div class="<{cycle values="word-even, word-odd"}>">
+	<a href="<{$xoops_url}>/modules/glossary/<{$i.linkWordUrl}>"><{$i.term}></a>&nbsp;&nbsp;
+
+	<{* --- Use Category --- *}>
+	<{if $config.use_category}>
+		[<{$i.category}>]<br />
+	<{/if}>
+	<div style="margin-left: 30px; margin-top: 5px; margin-bottom: 5px;">
+		<{* --- マルチバイト利用 --- *}>
+		<{if $config.use_multibytes}>
+			<strong><{$smarty.const._MD_GLOSSARY_WORD_PROC}>&nbsp;:&nbsp;</strong><{$i.proc}><br />
+			<strong><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}>&nbsp;:&nbsp;</strong><{$i.english}><br />
+		<{/if}>
+		<strong><{$smarty.const._MD_GLOSSARY_EXPLANATION}>&nbsp;:&nbsp;</strong><{$i.word_desc}>
+		<{if count($i.tags) gt 0}>
+			<p>
+			<img src="<{$xoops_url}>/modules/glossary/images/icon/tag_blue.png" alt="<{$smarty.const._MD_GLOSSARY_TAG}>">
+			<{foreach item=tag from=$i.tags}>
+				<{if $config.use_mod_rewrite}>
+					<a href="tag/<{$tag}>/" title="<{$tag}>" rel="<{$tag}>"><{$tag}></a>
+				<{else}>
+					<a href="index.php?action=TagView&tag=<{$tag}>" title="<{$tag}>"><{$tag}></a>
+				<{/if}>
+			<{/foreach}>
+			</p>
+		<{/if}>
+		<div align="right">
+			<a href="<{$xoops_url}>/modules/glossary/<{$i.linkWordUrl}>">
+			<img src="<{$xoops_url}>/modules/glossary/images/viewarticle.gif" alt="<{$i.term|xoops_escape}><{$smarty.const._MD_GLOSSARY_READMORE}>">
+			</a>
+		</div>
+	</div>
+</div>

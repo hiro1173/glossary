@@ -1,0 +1,26 @@
+<div id="wordlist">
+    <div class="word-letf">
+    <p><{$smarty.const._MD_GLOSSARY_WORD_NEWWORDS}></p>
+<{if count($new_words) gt 0}>
+    <ul>
+<{foreach item=i from=$new_words}>
+        <li><a href="<{$i.linkWordUrl}>"><{$i.term|xoops_escape}></a></li>
+<{/foreach}>
+    </ul>
+<{else}>
+    <{$erorrNoWords}>
+<{/if}>
+    </div>
+    <div class="word-right">
+    <p><{$smarty.const._MD_GLOSSARY_WORD_HITWORDS}></p>
+<{if count($hit_words) gt 0}>
+        <ul>
+<{foreach item=i from=$hit_words}>
+            <li><a href="<{$i.linkWordUrl}>"><{$i.term|xoops_escape}></a></li>
+<{/foreach}>
+        </ul>
+<{else}>
+        <{$erorrNoWords}>
+<{/if}>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+<{* --- モジュール説明文 --- *}>
+<{if $config.topagereadmeused}>
+	<p>
+	<{$config.topagereadme}>
+	</p>
+<{/if}>
+
+<{* --- 検索ブロック --- *}>
+<{include file="db:glossary_view_search.html"}>
+
+<{* --- タグクラウド --- *}>
+<{if count($tag_cloud) gt 0}>
+	<div id="tagcloud">
+	<{foreach item=i from=$tag_cloud}>
+		<{if $config.use_mod_rewrite}>
+			<a href="./tag/<{$i.tag|xoops_escape:link}>/" title="<{$i.tag|xoops_escape}>" rel="<{$i.tag}>" style="font-size:<{$i.size}>;"><{$i.tag}></a>
+			<{* --- (<{$i.count}>) --- *}>
+		<{else}>
+			<a href="index.php?action=TagView&tag=<{$i.tag|xoops_escape:link}>" title="<{$i.tag|xoops_escape}>" rel="<{$i.tag}>" style="font-size:<{$i.size}>;"><{$i.tag}></a>
+			<{* --- (<{$i.count}>) --- *}>
+		<{/if}>
+	<{/foreach}>
+	</div>
+<{/if}>

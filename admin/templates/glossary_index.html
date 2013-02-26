@@ -1,0 +1,102 @@
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<ul class='toptab'>
+  <li><a href='index.php?action=WordEdit'><{$smarty.const._AD_GLOSSARY_WORD_ADD}></a></li>
+</ul>
+<br />
+
+
+<{if count($newWord) gt 0}>
+	<p><strong><big><{$smarty.const._AD_GLOSSARY_MAIN_NEWWORDS}></big></strong></p>
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' >
+	<tr>
+		<th align='center' width='50'><{$smarty.const._AD_GLOSSARY_ID}></th>
+		<{* --- Use Category --- *}>
+		<{if $config.use_category}>
+			<th align='center' width='100'><{$smarty.const._AD_GLOSSARY_CAT}></th>
+		<{/if}>
+		<th align='center' width='60'><{$smarty.const._MD_GLOSSARY_WORD_INIT}></th>
+		<th align='center' width='100'><{$smarty.const._AD_GLOSSARY_WORD_TERMDESC}></th>
+		<th align='center'><{$smarty.const._MD_GLOSSARY_WORD_DESCRIPTION}></th>
+		<th align='center' width='60'><{$smarty.const._MD_GLOSSARY_WORD_HITS}></th>
+		<th align='center' width='80'><{$smarty.const._MD_GLOSSARY_SUBMITED}></th>
+		<th align='center' width='80'><{$smarty.const._AD_GLOSSARY_ACTION}></th>
+	</tr>
+	<{foreach item=i from=$newWord}>
+		<tr class="<{cycle values='even, odd'}>">
+			<td align='center'><{$i.wordid}></td>
+			<{* --- Use Category --- *}>
+			<{if $config.use_category}>
+				<td><{$i.category}></td>
+			<{/if}>
+			<td align='center'><{$i.init}></td>
+			<td>
+				<strong><{$i.term|xoops_escape}></strong><br />
+				<{if $config.use_multibytes}>
+					<{$i.proc}>
+				<{/if}>
+			</td>
+			<td><{$i.description|xoops_escape}></td>
+			<td align='right'><{$i.hits}>&nbsp;&nbsp;</td>
+			<td align='center'><{$i.submited|xoops_formattimestamp:s}></td>
+			<td align='center'>
+				<a href='index.php?action=WordEdit&wordid=<{$i.wordid}>'>
+					<img src='../images/icon/file_edit.png' alt='<{$smarty.const._AD_GLOSSARY_EDIT}>'>
+				</a>&nbsp;&nbsp;
+				<a href='index.php?action=WordDelete&wordid=<{$i.wordid}>'>
+					<img src='../images/icon/file_delete.png' alt='<{$smarty.const._AD_GLOSSARY_DELETE}>'>
+				</a>
+			</td>
+		</tr>
+	<{/foreach}>
+	</table>
+<{/if}>
+
+<br>
+
+
+<{if count($notPublished) gt 0}>
+	<p><strong><big><{$smarty.const._AD_GLOSSARY_MAIN_NOTPUBLISHED}></big></strong></p>
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' >
+	<tr>
+		<th align='center' width='50'><{$smarty.const._AD_GLOSSARY_ID}></th>
+		<{* --- Use Category --- *}>
+		<{if $config.use_category}>
+			<th align='center' width='100'><{$smarty.const._AD_GLOSSARY_CAT}></th>
+		<{/if}>
+		<th align='center' width='60'><{$smarty.const._MD_GLOSSARY_WORD_INIT}></th>
+		<th align='center' width='100'><{$smarty.const._AD_GLOSSARY_WORD_TERMDESC}></th>
+		<th align='center'><{$smarty.const._MD_GLOSSARY_WORD_DESCRIPTION}></th>
+		<th align='center' width='60'><{$smarty.const._MD_GLOSSARY_WORD_HITS}></th>
+		<th align='center' width='80'><{$smarty.const._MD_GLOSSARY_SUBMITED}></th>
+		<th align='center' width='80'><{$smarty.const._AD_GLOSSARY_ACTION}></th>
+	</tr>
+	<{foreach item=i from=$notPublished}>
+		<tr class="<{cycle values='even, odd'}>">
+			<td align='center'><{$i.wordid}></td>
+			<{* --- Use Category --- *}>
+			<{if $config.use_category}>
+				<td><{$i.category}></td>
+			<{/if}>
+			<td align='center'><{$i.init}></td>
+			<td>
+				<strong><{$i.term}></strong><br />
+				<{if $config.use_multibytes}>
+					<{$i.proc}>
+				<{/if}>
+			</td>
+			<td><{$i.description}></td>
+			<td align='right'><{$i.hits}>&nbsp;&nbsp;</td>
+			<td align='center'><{$i.submited|xoops_formattimestamp:s}></td>
+			<td align='center'>
+				<a href='index.php?action=WordEdit&wordid=<{$i.wordid}>'>
+					<img src='../images/icon/file_edit.png' alt='<{$smarty.const._AD_GLOSSARY_EDIT}>'>
+				</a>&nbsp;&nbsp;
+				<a href='index.php?action=WordDelete&wordid=<{$i.wordid}>'>
+					<img src='../images/icon/file_delete.png' alt='<{$smarty.const._AD_GLOSSARY_DELETE}>'>
+				</a>
+			</td>
+		</tr>
+	<{/foreach}>
+	</table>
+<{/if}>

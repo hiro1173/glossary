@@ -1,0 +1,112 @@
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<{if $actionForm->hasError()}>
+<div class="confirm">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_EDIT_ERROR}></p>
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+	<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+</div>
+<{/if}>
+
+<form method="post" action="./index.php?action=WordDelete">
+
+<{xoops_token form=$actionForm}>
+
+<{xoops_input type=hidden name=wordid value=$actionForm->get('wordid')}>
+
+<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' class='outer'>
+<tbody>
+	<tr>
+		<th colspan="2" align="center">
+		<{$smarty.const._MD_GLOSSARY_WORD_DELETE}>
+		</th>
+	</tr>
+	<tr>
+		<td class="head" width="150"><{$smarty.const._MD_GLOSSARY_WORD_ID}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('wordid')}></td>
+	</tr>
+
+	<{* --- Use Category --- *}>
+	<{if $config.use_category}>
+		<tr>
+			<td class="head"><{$smarty.const._MD_GLOSSARY_CATEGORYID}></td>
+			<td class="<{cycle values="odd,even"}>"><{$object->getShow('categoryid')}></td>
+		</tr>
+	<{/if}>
+
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_TERM}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('term')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('english')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_PROC}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('proc')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_DESCRIPTION}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('description')|xoops_escape}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_REFERENCE}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('reference')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_URL}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('url')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_SUBMITTER}></td>
+		<td class="<{cycle values="odd,even"}>">
+		<{$object->getShow('submitter')}>&nbsp;
+		<{$object->getShow('submitter')|xoops_user:uname}>&nbsp;
+		<{$object->getShow('submitter')|xoops_user:email}>
+		
+		</td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_SUBMITED}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('submited')|xoops_formattimestamp:l}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_HITS}></td>
+		<td class="<{cycle values="odd,even"}>"><{$object->getShow('hits')}></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_BLOCK}></td>
+		<td class="<{cycle values="odd,even"}>">
+			<{if $object->getShow('block')}>
+				<{$smarty.const._YES}>
+			<{else}>
+				<{$smarty.const._NO}>
+			<{/if}>
+		</td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_GLOSSARY_WORD_PUBLISHED}></td>
+		<td class="<{cycle values="odd,even"}>">
+			<{if $object->getShow('published')}>
+				<{$smarty.const._YES}>
+			<{else}>
+				<{$smarty.const._NO}>
+			<{/if}>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+		<tr>
+			<td colspan="2" class="foot">
+			<input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+			<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+			</td>
+		</tr>
+</tr>
+</tbody>
+</table>
+</form>

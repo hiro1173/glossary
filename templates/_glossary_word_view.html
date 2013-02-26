@@ -1,0 +1,159 @@
+<body onload="prettyPrint();">
+
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+
+
+<{include file="db:glossary_view_search.html"}>
+
+<hr>
+<h2 class="word">
+<{if $xoops_isadmin}>
+	<{* --- Inplace 編集 --- *}>
+	<{if $inline_editable}>
+		<p class="editme1" id="term">
+	<{/if}>
+	<{$object->getShow('term')}>
+	<{if $inline_editable}>
+		</p>
+	<{/if}>
+<{else}>
+	<{$smarty.const._MD_GLOSSARY_WORD_TERM}>&nbsp;:&nbsp;<{$object->getShow('term')}>
+<{/if}>
+</h2>
+<div id="word-yomi">
+
+	<{if $xoops_isadmin}>
+		<strong><{$smarty.const._MD_GLOSSARY_WORD_PROC}>&nbsp;:</strong>&nbsp;
+		<{* --- Inplace 編集 --- *}>
+		<{if $inline_editable}><p class="editme2" id="proc"><{/if}>
+		<{$object->getShow('proc')}>
+		<{if $inline_editable}></p>
+		<{/if}>
+	<{else}>
+		<strong><{$smarty.const._MD_GLOSSARY_WORD_PROC}>&nbsp;:</strong>&nbsp;<{$object->getShow('proc')}><br />
+	<{/if}>
+
+
+	<strong><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}>&nbsp;:</strong>&nbsp;<{$object->getShow('english')}><br />
+</div>
+
+
+<div class="editme3" id="description">
+	<{$word_description}>
+</div>
+
+<hr>
+
+<h2 class="word">
+	<{$smarty.const._MD_GLOSSARY_WORD_TERM}>&nbsp;:&nbsp;<{$object->getShow('term')}>
+</h2>
+
+<{* --- タグ --- *}>
+<{if count($tags) gt 0}>
+	<p>
+	<img src="<{$xoops_url}>/modules/glossary/images/icon/tag_blue.png" alt="<{$smarty.const._MD_GLOSSARY_TAG}>">
+	<{foreach item=i from=$tags}>
+		<{if $config.use_mod_rewrite}>
+			<a href="./../../tag/<{$i}>/" title="<{$i}>" rel="<{$i}>"><{$i}></a>&nbsp;&nbsp;
+		<{else}>
+			<a href="index.php?action=TagView&tag=<{$i}>" title="<{$i}>" rel="<{$i}>"><{$i}></a>
+		<{/if}>
+	<{/foreach}>
+	</p>
+<{/if}>
+<div id="word-yomi">
+	<strong><{$smarty.const._MD_GLOSSARY_WORD_PROC}>&nbsp;:</strong>&nbsp;<{$object->getShow('proc')}><br />
+	<strong><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}>&nbsp;:</strong>&nbsp;<{$object->getShow('english')}><br />
+</div>
+
+
+
+
+<div id="word-desc">
+	<{$word_description}>
+</div>
+
+<{* --- 参考サイト --- *}>
+<{if $object->getShow('url')}>
+	<{if $object->getShow('reference')}>
+		<{* --- サイト名がある場合 --- *}>
+		<a href="<{$object->getShow('url')}>" target="_blank">
+		<img src="<{$xoops_url}>/modules/glossary/images/icon/url_icon.gif" alt="<{$smarty.const._MD_GLOSSARY_TAG}>">
+		&nbsp;<{$object->getShow('reference')}>
+		</a>
+	<{else}>
+		<{* --- URLのみの場合 --- *}>
+		<a href="<{$object->getShow('url')}>" target="_blank">
+		<img src="<{$xoops_url}>/modules/glossary/images/icon/url_icon.gif" alt="<{$smarty.const._MD_GLOSSARY_TAG}>">
+		&nbsp;<{$object->getShow('url')}>
+		</a>
+	<{/if}>
+<{/if}>
+
+
+<{if $link_url}>
+	<div id="word-reference">
+		<{$smarty.const._MD_GLOSSARY_URL}><{$reference}>&nbsp;<a href="<{$object->getShow('link_url')}>"><{$object->getShow('link_url')}></a>
+	</div>
+<{/if}>
+
+<p align="right">
+	<{$word_hits}>&nbsp;hits&nbsp;&nbsp;
+	<{$smarty.const._MD_GLOSSARY_SUBMITED}>
+	<{$object->getShow('submited')|xoops_formattimestamp:s}>
+</p>
+
+
+<p>ここに履歴を表示させる</p>
+
+<{if $xoops_isadmin}>
+	<p align="right">
+	<a href="<{$xoops_url}>/modules/glossary/index.php?action=WordEdit&wordid=<{$object->getShow('wordid')}>"><{$smarty.const._MD_GLOSSARY_MODIFY}></a>
+	</p>
+<{/if}>
+
+<{* --- 関連用語 --- *}>
+<{if count($relation_words) gt 0}>
+	<hr>
+	<p><{$smarty.const._MD_GLOSSARY_RELATEDTERM}></p>
+
+	<{foreach item=i from=$relation_words}>
+		<a href="<{$xoops_url}>/modules/glossary/<{$i.linkWordUrl}>"><{$i.term}></a>
+		<br />
+	<{/foreach}>
+<{/if}>
+
+<{* --- ブロック表示 --- *}>
+<{if $new_words_block_used}>
+	<hr>
+	<div id="wordlist">
+		<div class="word-letf">
+		<p><{$smarty.const._MD_GLOSSARY_WORD_NEWWORDS}></p>
+		<{if count($new_words) gt 0}>
+			<ul>
+			<{foreach item=i from=$new_words}>
+				<li>
+				<a href="<{$xoops_url}>/modules/glossary/<{$i.linkWordUrl}>"><{$i.term}></a>
+				</li>
+			<{/foreach}>
+			</ul>
+		<{else}>
+			<{$erorrNoWords}>
+		<{/if}>
+ 		</div>
+		<div class="word-right">
+		<p><{$smarty.const._MD_GLOSSARY_HITWORDS}></p>
+		<{if count($hit_words) gt 0}>
+			<ul>
+			<{foreach item=i from=$hit_words}>
+				<li>
+				<a href="<{$xoops_url}>/modules/glossary/<{$i.linkWordUrl}>"><{$i.term}></a>
+				</li>
+			<{/foreach}>
+			</ul>
+		<{else}>
+			<{$erorrNoWords}>
+		<{/if}>
+		</div>
+	</div>
+<{/if}>

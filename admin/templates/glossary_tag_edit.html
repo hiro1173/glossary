@@ -1,0 +1,56 @@
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<{if $actionForm->hasError()}>
+<div class="confirm">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_EDIT_ERROR}></p>
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+	<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+</div>
+<{/if}>
+
+
+<form action="index.php?action=TagEdit" method="post" name="post">
+
+
+<{* --- 
+
+<{$actionForm->get('tag')}>
+
+ --- *}>
+
+	<{xoops_token form=$actionForm}>
+	<{xoops_input type=hidden name=tag value=$actionForm->get('tag')}>
+
+<table width='100%' class='outer'>
+
+<tr>
+<th colspan="2"><{$smarty.const._AD_GLOSSARY_TAG_EDIT}></th>
+</tr>
+
+<tr>
+	<td class="head" width="130"><{$smarty.const._AD_GLOSSARY_TAG_OLD}></td>
+	<td class="<{cycle values="odd,even"}>">
+		<{$actionForm->get('tag')}>
+	</td>
+</tr>
+<tr>
+	<td class="head"><{$smarty.const._AD_GLOSSARY_TAG_NEW}></td>
+	<td class="<{cycle values="odd,even"}>">
+		<{xoops_input type=text name=new_tag value=$actionForm->get('new_tag') size=50 maxlength=255}>
+	</td>
+</tr>
+<tr>
+	<td colspan="2"  class="foot">
+		<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+		<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+	</td>
+</tr>
+</table>
+
+
+
+
+</form>

@@ -1,0 +1,16 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+
+<{include file="db:glossary_view_search.html"}>
+
+<h2 class="word"><{$smarty.const._MD_GLOSSARY_CATEGORY}>&nbsp;:&nbsp;<{$object->getShow('name')|xoops_escape}></h2>
+<p style="margin-bottom: 5px;"><{$object->getShow('description')|xoops_escape}></p>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<{foreach item=i from=$word_items}>
+	<{include file="db:glossary_word_item.html"}>
+<{/foreach}>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{$total_count}><{$smarty.const._MD_GLOSSARY_PAGE_HIT}>
+

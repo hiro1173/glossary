@@ -1,0 +1,46 @@
+<div align="center">
+	<div id="letter-line">
+		<p class="letter">
+		<{foreach item=i from=$block.alpha.initial}>
+			<{$i.separator}>
+			<{if $i.total}>
+				<{if $block.use_mod_rewrite}>
+					<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letter/<{$i.id}>/"><{$i.linktext}></a>
+				<{else}>
+					<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letters.php?init=<{$i.id}>"><{$i.linktext}></a>
+				<{/if}>
+			<{else}>
+				<{$i.linktext}>
+			<{/if}>
+		<{/foreach}>
+		</p>
+		<p class="letter">
+		<{foreach item=i from=$block.japanese.initial}>
+			<{$i.separator}>
+			<{if $i.total}>
+				<{if $block.use_mod_rewrite}>
+					<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letter/<{$i.id}>/"><{$i.linktext}></a>
+				<{else}>
+					<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letters.php?init=<{$i.id}>"><{$i.linktext}></a>
+				<{/if}>
+			<{else}>
+				<{$i.linktext}>
+			<{/if}>
+		<{/foreach}>
+		</p>
+		<p class="letter">
+		<{foreach item=i from=$block.number.initial}>
+			<{$i.separator}>
+			<{if $i.total}>
+				<{if $block.use_mod_rewrite}>
+					<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letter/<{$i.id}>/"><{$i.linktext}></a>
+				<{else}>
+					<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/letters.php?init=<{$i.id}>"><{$i.linktext}></a>
+				<{/if}>
+			<{else}>
+				<{$i.linktext}>
+			<{/if}>
+		<{/foreach}>
+		</p>
+	</div>
+</div>

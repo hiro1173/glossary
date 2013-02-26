@@ -1,0 +1,16 @@
+<Files ~ "^\.ht">
+deny from all
+</Files>
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^category/(.*)/page([0-9-]+)\.html$ index.php?action=CategoryView&word=$1&start=$2 [L]
+RewriteRule ^category/(.*)/$ index.php?action=CategoryView&word=$1 [L]
+RewriteRule ^tag/(.*)/$ index.php?action=TagView&tag=$1 [L]
+RewriteRule ^word/(.*)/$ index.php?action=WordView&word=$1 [L]
+RewriteRule ^letter/(.*)/$ index.php?action=LetterList&word=$1 [L]
+RewriteRule ^tagcloud/$ index.php?action=TagCloud [L]
+RewriteRule ^feed/$ index.php?action=Feed [L]
+RewriteRule ^rss/$ index.php?action=Rss [L]

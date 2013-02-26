@@ -1,0 +1,125 @@
+<{if $config.usebreadcrumbs}><{include file="db:glossary_header.html"}><{/if}>
+
+
+<{include file="db:glossary_view_search.html"}>
+<h2 class="word">
+	<{$smarty.const._MD_GLOSSARY_WORD_TERM}>&nbsp;:&nbsp;<{$object->getShow('term')|xoops_escape}>
+</h2>
+
+<{* --- タグ --- *}>
+<{if count($tags) gt 0}>
+	<span class="tags">
+	<img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/icon/tag_blue.png" alt="<{$smarty.const._MD_GLOSSARY_TAG}>" />
+	<{foreach item=i from=$tags}>
+		<{if $config.use_mod_rewrite}>
+			<a href="./../../tag/<{$i}>/" title="<{$i|xoops_escape}>" rel="<{$i|xoops_escape}>"><{$i|xoops_escape}></a>
+		<{else}>
+			<a href="index.php?action=TagView&tag=<{$i}>" title="<{$i|xoops_escape}>" rel="<{$i|xoops_escape}>"><{$i|xoops_escape}></a>
+		<{/if}>
+	<{/foreach}>
+	</span>
+<{/if}>
+
+<{* --- Use Category --- *}>
+<{if $config.use_category}>
+	<div id="word-category">
+		<strong><{$smarty.const._MD_GLOSSARY_CATEGORY}>&nbsp;:</strong>&nbsp;<{$categoryObject->getShow('name')|xoops_escape}><br />
+	</div>
+<{/if}>
+<{* --- マルチバイト利用 --- *}>
+<{if $config.use_multibytes}>
+	<div id="word-yomi">
+		<strong><{$smarty.const._MD_GLOSSARY_WORD_PROC}>&nbsp;:</strong>&nbsp;<{$object->getShow('proc')|xoops_escape}><br />
+		<strong><{$smarty.const._MD_GLOSSARY_WORD_ENGLISH}>&nbsp;:</strong>&nbsp;<{$object->getShow('english')|xoops_escape}><br />
+	</div>
+<{/if}>
+
+
+<{* --- 記事 --- *}>
+<div id="word-desc">
+	<{$word_description}>
+</div>
+
+<{* --- 参考サイト --- *}>
+<{if $object->getShow('url')}>
+	<div id="word-desc">
+	<{if $object->getShow('reference')}>
+		<{* --- サイト名がある場合 --- *}>
+		<a href="<{$object->getShow('url')}>" target="_blank">
+		<img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/icon/url_icon.gif" alt="<{$smarty.const._MD_GLOSSARY_TAG}>" />
+		&nbsp;<{$object->getShow('reference')}>
+		</a>
+	<{else}>
+		<{* --- URLのみの場合 --- *}>
+		<a href="<{$object->getShow('url')}>" target="_blank">
+		<img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/icon/url_icon.gif" alt="<{$smarty.const._MD_GLOSSARY_TAG}>" />
+		&nbsp;<{$object->getShow('url')}>
+		</a>
+	<{/if}>
+	</div>
+<{/if}>
+
+
+<{if $link_url}>
+	<div id="word-reference">
+		<{$smarty.const._MD_GLOSSARY_URL}><{$reference}>&nbsp;<a href="<{$object->getShow('link_url')|xoops_escape:link}>"><{$object->getShow('link_url')|xoops_escape:link}></a>
+	</div>
+<{/if}>
+
+<p align="right">
+	<{$word_hits}>&nbsp;hits&nbsp;&nbsp;
+	<{$smarty.const._MD_GLOSSARY_SUBMITED}>
+	<{$object->getShow('submited')|xoops_formattimestamp:s}>
+</p>
+
+<{if $xoops_isadmin}>
+<p align="right">
+<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/index.php?action=WordEdit&wordid=<{$object->getShow('wordid')}>">
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/icon/file_edit.png" alt="<{$smarty.const._MD_GLOSSARY_EDIT}>" />
+</a>
+&nbsp;
+<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/index.php?action=WordDelete&wordid=<{$object->getShow('wordid')}>">
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/images/icon/file_delete.png" alt="<{$smarty.const._MD_GLOSSARY_DELETE}>" />
+</a>
+</p>
+<{/if}>
+
+<{* --- 関連用語 --- *}>
+<{if count($relation_words) gt 0}>
+<hr />
+<p><{$smarty.const._MD_GLOSSARY_WORD_RELATED|replace:"%s":$object->getShow('term')|xoops_escape}></p>
+<{foreach item=i from=$relation_words}>
+<a href="<{$i.linkWordUrl}>"><{$i.term|xoops_escape}></a><br />
+<{/foreach}>
+<{/if}>
+
+<{* --- ブロック表示 --- *}>
+<{if $new_words_block_used}>
+<hr />
+<div id="wordlist">
+	<div class="word-letf">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_NEWWORDS}></p>
+	<{if count($new_words) gt 0}>
+	<ul>
+	<{foreach item=i from=$new_words}>
+	<li><a href="<{$i.linkWordUrl}>"><{$i.term|xoops_escape}></a></li>
+	<{/foreach}>
+	</ul>
+	<{else}>
+	<{$erorrNoWords}>
+	<{/if}>
+	</div>
+	<div class="word-right">
+	<p><{$smarty.const._MD_GLOSSARY_WORD_HITWORDS}></p>
+	<{if count($hit_words) gt 0}>
+	<ul>
+	<{foreach item=i from=$hit_words}>
+	<li><a href="<{$i.linkWordUrl}>"><{$i.term|xoops_escape}></a></li>
+	<{/foreach}>
+	</ul>
+	<{else}>
+	<{$erorrNoWords}>
+	<{/if}>
+	</div>
+</div>
+<{/if}>

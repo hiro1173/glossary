@@ -1,0 +1,110 @@
+<{* --- /admin/templates/admin_word.html --- *}>
+
+<{include file="file:$xoops_rootpath/modules/glossary/admin/templates/glossary_header.html"}>
+
+<ul class='toptab'>
+  <li><a href='index.php?action=WordEdit'><{$smarty.const._AD_GLOSSARY_WORD_ADD}></a></li>
+</ul>
+<br />
+<{if count($wordArray) gt 0}>
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' >
+	<tr>
+		<th align='center' width='80'>
+			<{$smarty.const._AD_GLOSSARY_ID}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_WORD_ID}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_WORD_ID}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+
+		<{if $config.use_category}>
+			<th align='center' width='150'>
+				<{$smarty.const._AD_GLOSSARY_CAT}>&nbsp;
+				<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_CATEGORY_ID}>">
+					<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+				</a>
+				<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_CATEGORY_ID}>">
+					<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+				</a>
+			</th>
+		<{/if}>
+		<th align='center' width='140'>
+			<{$smarty.const._MD_GLOSSARY_WORD_INIT}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_WORD_INIT}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_WORD_INIT}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='100'>
+			<{$smarty.const._AD_GLOSSARY_WORD_TERMDESC}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_WORD_NAME}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_WORD_NAME}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center'>
+			<{$smarty.const._MD_GLOSSARY_WORD_DESCRIPTION}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_WORD_DESCRIPTION}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_WORD_DESCRIPTION}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._MD_GLOSSARY_WORD_HITS}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_WORD_HITS}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_WORD_HITS}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._MD_GLOSSARY_SUBMITED}>&nbsp;
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GLOSSARY_SORT_KEY_WORD_SUBMITED}>">
+				<img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GLOSSARY_SORT_KEY_WORD_SUBMITED}>">
+				<img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='80'><{$smarty.const._AD_GLOSSARY_ACTION}></th>
+	</tr>
+	<{foreach item=i from=$wordArray}>
+		<tr class="<{cycle values='even, odd'}>">
+			<td align='center'><{$i.wordid}></td>
+			<{if $config.use_category}>
+				<td><{$i.category}></td>
+			<{/if}>
+			<td align='center'><{$i.init}></td>
+			<td>
+				<strong><{$i.term}></strong><br />
+				<{if $config.use_multibytes}>
+					<{$i.proc}>
+				<{/if}>
+			</td>
+			<td><{$i.description}></td>
+			<td align='right'><{$i.hits}>&nbsp;&nbsp;</td>
+			<td align='center'><{$i.submited|xoops_formattimestamp:s}></td>
+			<td align='center'>
+				<a href='index.php?action=WordEdit&wordid=<{$i.wordid}>'>
+					<img src='../images/icon/file_edit.png' alt='<{$smarty.const._AD_GLOSSARY_EDIT}>'>
+				</a>&nbsp;&nbsp;
+				<a href='index.php?action=WordDelete&wordid=<{$i.wordid}>'>
+					<img src='../images/icon/file_delete.png' alt='<{$smarty.const._AD_GLOSSARY_DELETE}>'>
+				</a>
+			</td>
+		</tr>
+	<{/foreach}>
+	</table>
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{/if}>
+

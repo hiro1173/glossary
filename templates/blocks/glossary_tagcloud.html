@@ -1,0 +1,11 @@
+<{* --- tag cloud block --- *}>
+<link rel="stylesheet" type="text/css"  href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/block_tagcloud.css" />
+<p class="tags">
+<{foreach item=i from=$block.tagcloud}>
+	<{if $block.use_mod_rewrite}>
+		<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/tag/<{$i.tag}>/" title="<{$i.tag}>" rel="<{$i.tag}>" style="font-size:<{$i.size}>;"><{$i.tag}></a>
+	<{else}>
+		<a href="<{$smarty.const.XOOPS_MODULE_URL}>/glossary/index.php?action=TagView&tag=<{$i.tag}>" title="<{$i.tag}>" rel="<{$i.tag}>" style="font-size:<{$i.size}>;"><{$i.tag}></a>
+	<{/if}>
+<{/foreach}>
+</p>
